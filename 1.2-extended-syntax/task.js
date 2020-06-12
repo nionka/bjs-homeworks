@@ -9,9 +9,10 @@ function getResult(a,b,c){
     } else if (d > 0) {
         x[0] = (-b + Math.sqrt(d)) / (2 * a);
         x[1] = (-b - Math.sqrt(d)) / (2 * a);
-    } else {
-        x = [];
     }
+    // } else {  // не нужно, тк х уже равен пустому массиву
+    //     x = [];
+    // }
 
     return x;
 }
@@ -31,22 +32,31 @@ function getAverageMark(marks){
         sum += marks[i];
     }
 
-    averageMark = sum / marks.length;
+    // averageMark = sum / marks.length; // можно сразу возвращать операцию
 
-    return averageMark;
+    // return averageMark;
+   return averageMark = sum / marks.length;
 }
 
 function askDrink(name,dateOfBirthday){
-    let userYear = dateOfBirthday.getFullYear();
-    let thisYear = new Date().getFullYear();
-    let ageGap = thisYear - userYear;
-    let result = "";
+    // let userYear = dateOfBirthday.getFullYear();
+    // let thisYear = new Date().getFullYear();
+    // let ageGap = thisYear - userYear;
+    // let result = "";
 
+
+    // if (ageGap > 18) {
+    //     result = `Не желаете ли олд-фэшн, ${name}?`;
+    // } else {
+    //     result = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
+    // }
+    // return result;
+
+    let ageGap = new Date().getFullYear() - dateOfBirthday.getFullYear();
 
     if (ageGap > 18) {
-        result = `Не желаете ли олд-фэшн, ${name}?`;
+        return result = `Не желаете ли олд-фэшн, ${name}?`;
     } else {
-        result = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
+        return result = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
     }
-    return result;
 }
