@@ -21,10 +21,14 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
         amount = parseInt(amount);
     }
 
+    if (isNaN(date)) {
+        return totalAmount = `Параметр "Срок ипотеки" содержит неправильное значение ${date}`;
+    }
+
     // percent = percent / 100;
 
     let bodyCredit = amount - contribution;
-    let allMonths = (date.getFullYear() - new Date().getFullYear()) * 12;
+    let allMonths = (date.getFullYear() - new Date().getFullYear()) * 12 + (date.getMonth() - new Date().getMonth());
     let p = (percent / 100) / 12;
     let monthlyPayment = bodyCredit * (p + p /(((1 + p) ** allMonths) - 1));
     totalAmount = +(monthlyPayment * allMonths).toFixed(2);
