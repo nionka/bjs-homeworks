@@ -4,25 +4,25 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     let totalAmount = "";
 
     if (isNaN(parseInt(percent))) {
-        return totalAmount = `Параметр "Процентная ставка" содержит неправильное значение ${percent}`;
+        return `Параметр "Процентная ставка" содержит неправильное значение ${percent}`;
     } else {
         percent = parseInt(percent);
     }
     
     if (isNaN(parseInt(contribution))) {
-        return totalAmount = `Параметр "Начальный взнос" содержит неправильное значение ${contribution}`;
+        return `Параметр "Начальный взнос" содержит неправильное значение ${contribution}`;
     } else {
         contribution = parseInt(contribution);
     }
 
     if (isNaN(parseInt(amount))) {
-        return totalAmount = `Параметр "Общая стоимость" содержит неправильное значение ${amount}`;
+        return `Параметр "Общая стоимость" содержит неправильное значение ${amount}`;
     } else {
         amount = parseInt(amount);
     }
 
     if (isNaN(date)) {
-        return totalAmount = `Параметр "Срок ипотеки" содержит неправильное значение ${date}`;
+        return `Параметр "Срок ипотеки" содержит неправильное значение ${date}`;
     }
 
     // percent = percent / 100;
@@ -40,10 +40,13 @@ function getGreeting(name) {
     
     if (name === "" || typeof name === "undefined" || name == null) {
         console.log("Привет, мир! Меня зовут Аноним");
-        return greeting = "Привет, мир! Меня зовут Аноним";
-    } else {
-        console.log(`Привет, мир! Меня зовут ${name}`);
-        return greeting = `Привет, мир! Меня зовут ${name}`;
+        name = "Аноним";
     }
+    
+    return `Привет, мир! Меня зовут ${name}`;
+    // } else {
+    //     console.log(`Привет, мир! Меня зовут ${name}`);
+    //     return greeting = `Привет, мир! Меня зовут ${name}`;
+    // }
     // return greeting;
 }
