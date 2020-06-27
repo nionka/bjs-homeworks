@@ -1,11 +1,45 @@
 //String.prototype.isPalindrome - для задачи №1
 
+String.prototype.isPalindrome = function() {
+    let value = this.toLowerCase().replace(/\s+/g, "");
+
+    for (let i = 0; i < value.length; i++) {
+      console.log(value.length)
+      if (value[i] !== value[(value.length - 1) - i]){
+      return false
+      } else {
+        return true
+      }
+    }
+}
+
 function getAverageMark(marks) {
-    // код для задачи №2 писать здесь
-    // return averageMark
+    let sum = 0;
+    let average = 0;
+
+    for (let i = 0; i < marks.length; i++) {
+        sum += marks[i];
+        average = sum / marks.length;
+    }
+
+    // let roundedAverage = Math.round(average);
+    // return roundedAverage
+
+    return Math.round(average)
 }
 
 function checkBirthday(birthday) {
-    // код для задачи №3 писать здесь
+    let now = +Date.now();
+    birthday = +new Date(birthday);
+    let diff = now - birthday;
+    let mlsInYear = 1000 * 60 * 60 * 24 * 365.25;
+    let age = diff / mlsInYear;
+
+    if (age > 18) {
+        return true
+    } else {
+        return false
+    }
+
     // return verdict
 }
