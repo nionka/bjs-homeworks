@@ -109,8 +109,8 @@ class StudentLog {
         }
 
         if (grade < 1 || grade > 5) {
-            return `Вы пытались поставить оценку ${grage} по предмету ${subject}.Допускаются только числа от 1 до 5.`,
-                    this[subject].length
+            console.log(`Вы пытались поставить оценку ${grade} по предмету ${subject}.Допускаются только числа от 1 до 5.`)
+                   return this[subject].length
         } else {
             this[subject].push(grade)
             return this[subject].length
