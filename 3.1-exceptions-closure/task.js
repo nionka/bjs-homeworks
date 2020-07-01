@@ -14,7 +14,8 @@ function validateCount(value) {
     try { 
        return parseCount(value);
     } catch(e) {
-        return new Error("Невалидное значение")
+        // return new Error("Невалидное значение")
+        return e
     }
 }
 
@@ -34,7 +35,8 @@ class Triangle {
     }
 
     getArea() {
-        const p = (this.a + this.b + this.c) / 2;
+        // const p = (this.a + this.b + this.c) / 2;
+        const p = this.getPerimeter() / 2;
         const S = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
 
         return +S.toFixed(3)
@@ -45,16 +47,21 @@ function getTriangle(a, b, c) {
     try {
         return new Triangle(a, b, c);    
     } catch(e) {
-         class EmptyTriangle extends Triangle {
-             getPerimeter() {
-                 return "Ошибка! Неправильный треугольник"
-             }
+        //  class EmptyTriangle extends Triangle {
+        //      getPerimeter() {
+        //          return "Ошибка! Неправильный треугольник"
+        //      }
 
-             getArea() {
-                 return "Ошибка! Неправильный треугольник"
-             }
-         }
+        //      getArea() {
+        //          return "Ошибка! Неправильный треугольник"
+        //      }
+        //  }
 
-        return new EmptyTriangle()   
+        // return new EmptyTriangle()
+        
+        return {
+            getPerimeter() { return "Ошибка! Неправильный треугольник"},
+            getArea() {return "Ошибка! Неправильный треугольник"}   
+        }
     }   
 }
