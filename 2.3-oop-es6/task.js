@@ -78,10 +78,10 @@ class Library {
         for (let i = 0; i < this.books.length; i++) {
             if (this.books[i][type] === value) {
                 return this.books[i]
-            } else {
-                return null
             }
         }
+        
+        return null
     }
 
     giveBookByName(bookName) {
@@ -108,7 +108,7 @@ class StudentLog {
             this[subject] = [];
         }
 
-        if (grade < 1 || grade > 5) {
+        if ((grade < 1 || grade > 5) || typeof grade === "string") {
             console.log(`Вы пытались поставить оценку ${grade} по предмету ${subject}.Допускаются только числа от 1 до 5.`)
                    return this[subject].length
         } else {
