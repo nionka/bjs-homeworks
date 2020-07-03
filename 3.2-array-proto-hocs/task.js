@@ -13,11 +13,13 @@ function sum(...args) {
 }
 
 function compareArrays(arr1, arr2) {
-    if (arr1.length === arr2.length) {
-        return arr1.every((num, index) => num === arr2[index]);
-    } else {
-        return false
-    }
+    // if (arr1.length === arr2.length) {
+    //     return arr1.every((num, index) => num === arr2[index]);
+    // } else {
+    //     return false
+    // }
+
+    return arr1.length === arr2.length && arr1.every((num, index) => num === arr2[index]);
 }
 
 function memorize(fn, limit) {
@@ -25,13 +27,15 @@ function memorize(fn, limit) {
 
     return function(...args) {
         
-        let a = memory.find((p) => compareArrays(p.args, args));
+        let value = memory.find((count) => compareArrays(count.args, args));
 
-        if (a !== undefined) {
-            return a.result
-        } else {
-            memory.push({args, result: fn(...args)});
+        if (value) { // (value !== undefined) было так
+            return value.result
         }
+        // } else {
+        //     memory.push({args, result: fn(...args)}); было так
+        // }
+        memory.push({args, result: fn(...args)});
 
         if (memory.length > limit) {
             memory.shift()
