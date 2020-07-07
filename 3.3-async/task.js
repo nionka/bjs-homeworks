@@ -5,16 +5,22 @@ class AlarmClock {
     }
 
     addClock(time, callback, id) {
-        if (!id) {
+        try {
+            if (!id) {
             throw new Error("нет id")
-        }
+            }
 
-        if (this.alarmCollection.find((value) => value.id === id)) {
+            if (this.alarmCollection.find((value) => value.id === id)) {
             console.error("Такой звонок уже существует")
             return
-        }
+            }
 
-        this.alarmCollection.push({id, time, callback})
+            this.alarmCollection.push({id, time, callback})
+
+        } catch(e) {
+            console.error("oshibka")
+
+        }
     }
 
     removeClock(id) {
@@ -36,11 +42,12 @@ class AlarmClock {
     }
 
     start() {
-        function checkClock(alarm){
+        let checkClock = alarm => {
           if (this.getCurrentFormattedTime() === alarm.time) {  
-              alarm.callback;
+              alarm.callback();
             }
         }
+        
           
         if (this.timerId === null) {
           this.timerId = setInterval(() => this.alarmCollection.forEach((index) => checkClock(index)), 1000)
@@ -63,4 +70,22 @@ class AlarmClock {
         clearTimeout(this.timerId)
         this.alarmCollection.splice(0, this.alarmCollection.length)
     }
+}
+
+function testCase() {
+    const phoneAlarm = new AlarmClock();
+
+    phoneAlarm.addClock("12:55", () => console.log("Пора вставать"), 1);
+    phoneAlarm.addClock("12:56", () => {console.log("Давай вставай уже"); phoneAlarm.removeClock(2)}, 2);
+    phoneAlarm.addClock("12:57", () => console.log("Иди умываться"));
+    phoneAlarm.addClock("12:58", () => {
+        console.log("Вставай, а то проспишь");
+        phoneAlarm.clearAlarms();
+        phoneAlarm.printAlarms();
+    }, 3);
+    phoneAlarm.addClock("12:49", () => console.log("Vstavay"), 1);
+
+    phoneAlarm.printAlarms();
+
+    phoneAlarm.start();
 }
